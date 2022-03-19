@@ -44,3 +44,25 @@ public class ThreadedGreeting {
 		}
 	}
 }
+
+class ThreadedGreeter implements Runnable{
+
+	int value;
+	ThreadedGreeter(int v){
+		value = v;
+	}
+	@Override
+	public void run() {
+		System.out.println("Hello from thread #" + value);
+		if(value <= 50) {
+			Thread t = new Thread(new ThreadedGreeter(value + 1));
+			t.start();
+			try {
+				t.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+}

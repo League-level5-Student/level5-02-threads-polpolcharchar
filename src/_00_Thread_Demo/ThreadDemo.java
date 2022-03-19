@@ -24,10 +24,11 @@ public class ThreadDemo {
 			Thread r1 = new Thread(()->timmy.move(400));
 			Thread r2 = new Thread(()->tammy.move(400));
 			Thread r3 = new Thread(()->sammy.move(400));
+			Thread r4 = new Thread(()->System.out.println("HI"));
 			
 			r1.start();
 			r2.start();
 			r3.start();
-			
+			r4.start();
 	}
 }
