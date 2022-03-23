@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import _04_Thread_Pool.WorkPool;
+
 public class Mandelbrot implements KeyListener {
 	public static final int WIDTH = 700;
 	public static final int HEIGHT = 500;
@@ -32,7 +34,7 @@ public class Mandelbrot implements KeyListener {
 	
 	private boolean singleThreaded = true;
 
-	private WorkQueue workQueue;
+	private WorkPool workQueue;
 
 	public Mandelbrot() {
 		window = new JFrame();
@@ -60,7 +62,7 @@ public class Mandelbrot implements KeyListener {
 		window.setVisible(true);
 
 		if (!singleThreaded) {
-			workQueue = new WorkQueue();
+			workQueue = new WorkPool();
 		}
 	}
 
@@ -182,7 +184,7 @@ public class Mandelbrot implements KeyListener {
 			singleThreaded = !singleThreaded;
 			update = true;
 			if (!singleThreaded) {
-				workQueue = new WorkQueue();
+				workQueue = new WorkPool();
 			} else {
 				if (workQueue != null) {
 					workQueue.shutdown();
